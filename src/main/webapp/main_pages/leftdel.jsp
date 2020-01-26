@@ -30,6 +30,14 @@
 							href="${pageContext.request.contextPath}/sys_schedule/findByScheduleAll.action"><i
 								class="icon-calendar"></i>我的日程</a>
 						</li>
+						<li><a
+							href="${pageContext.request.contextPath}/sys_schedule/emp_Schedule.action"><i
+								class="icon-calendar"></i>员工日程表</a>
+						</li>
+						<li><a
+							href="#"><i
+								class="icon-calendar"></i>新增日程表</a>
+						</li>
 					</ul></li>
 				<li><a
 					href="${pageContext.request.contextPath}/pages_mail/mail_login.jsp">

@@ -17,7 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="empEntryDate" column="EMP_EntryDate" />
 		<result property="MaritalStatus" column="marutakstatus" />
 		<result property="empPhotoUrl" column="EMP_PhotoUrl" />
-
+		
+		<!-- 这是代青添加的内容 -->
+		<result property="emp_user_id" column="USER_Id" />
+		
 		<!-- 用户 -->
 		<association property="user"
 			resultMap="com.ssm.OaManager.entity.User.userMap"></association>

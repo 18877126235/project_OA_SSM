@@ -37,7 +37,9 @@ public class UserServiceImpl implements UserService {
 	public User findById(Serializable id) {
 		User user = this.userDao.findById(id);
 		if (user == null) {
-			user = new User();
+			return null;
+			//user = new User();
+			
 		}
 		return user;
 	}

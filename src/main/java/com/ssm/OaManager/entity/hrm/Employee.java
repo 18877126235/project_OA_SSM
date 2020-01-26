@@ -48,6 +48,18 @@ public class Employee {
 	
 	private Position pos;
 	
+	private Integer emp_user_id;
+	
+	
+
+	public Integer getEmp_user_id() {
+		return emp_user_id;
+	}
+
+	public void setEmp_user_id(Integer emp_user_id) {
+		this.emp_user_id = emp_user_id;
+	}
+
 	public Employee() {
 	}
 

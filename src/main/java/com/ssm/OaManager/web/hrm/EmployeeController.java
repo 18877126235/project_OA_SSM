@@ -29,6 +29,7 @@ import com.ssm.OaManager.entity.hrm.Position;
 import com.ssm.OaManager.service.hrm.DeptService;
 import com.ssm.OaManager.service.hrm.EmployeeService;
 import com.ssm.OaManager.service.hrm.PositionService;
+import com.ssm.OaManager.service.system.UserService;
 import com.ssm.OaManager.utils.PageBean;
 import com.ssm.OaManager.utils.PrivilegeFilter;
 import org.apache.commons.beanutils.BeanUtils;
@@ -49,7 +50,8 @@ public class EmployeeController {
 	@Resource
 	private PositionService positionService;
 
-	
+	@Resource
+	private UserService userService; 
 	
 	/** 分页查询 显示所有员工的列表*/
 	@RequestMapping("/hrm/getEmployeeByPage.action")
@@ -59,9 +61,15 @@ public class EmployeeController {
 		setPrivilegeFilterUser(request);
 		PageBean<Employee> pageBean = new PageBean<Employee>();
 		List<Employee> emps = employeeService.findByPage(pageBean);
-//		for (Employee employee : emps) {
-//			System.out.println(employee.getEmpName());
-//		}
+		User user = new User();
+		//遍历匹配用户id
+		for (Employee employee : emps) {
+			
+			user = userService.findById(employee.getEmp_user_id());
+			
+			employee.setUser(user);
+			
+		}
 		request.setAttribute("emps", emps);
 		return "/pages_hr/public_hr_employee.jsp";
 	}
