@@ -10,8 +10,7 @@ import com.ssm.OaManager.entity.hrm.Employee;
 import com.ssm.OaManager.entity.hrm.Position;
 
 @Repository
-public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements
-		EmployeeDao {
+public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao {
 	// 利用默认构造方法初始化命名空间
 	public EmployeeDaoImpl() {
 		super.setNs(Employee.class.getName());

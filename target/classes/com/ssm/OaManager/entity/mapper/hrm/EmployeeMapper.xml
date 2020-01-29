@@ -180,6 +180,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
+	<!-- 修改员工信息 -->
 	<update id="update" parameterType="com.ssm.OaManager.entity.hrm.Employee">
 		update TB_Emplyee
 		<set>
@@ -212,7 +213,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					emp_EntryDate=#{empEntryDate},
 				</if>
 				<if test="MaritalStatus!=null">
-					marutakstatus=#{MaritalStatus},
+					MaritalStatus=#{MaritalStatus},
 				</if>
 				<if test="empPhotoUrl!=null">
 					EMP_PhotoUrl=#{empPhotoUrl},

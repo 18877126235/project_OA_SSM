@@ -17,19 +17,29 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ssm.OaManager.entity.RuMiddle;
 import com.ssm.OaManager.entity.User;
 import com.ssm.OaManager.entity.hrm.Department;
 import com.ssm.OaManager.entity.hrm.Employee;
 import com.ssm.OaManager.entity.hrm.Position;
+import com.ssm.OaManager.entity.privilege.Role;
+import com.ssm.OaManager.mydao.RuMiddleService;
 import com.ssm.OaManager.service.hrm.DeptService;
 import com.ssm.OaManager.service.hrm.EmployeeService;
 import com.ssm.OaManager.service.hrm.PositionService;
+
+import com.ssm.OaManager.service.system.RoleService;
 import com.ssm.OaManager.service.system.UserService;
+import com.ssm.OaManager.test.TableTest;
+import com.ssm.OaManager.test.TableTestService;
 import com.ssm.OaManager.utils.PageBean;
 import com.ssm.OaManager.utils.PrivilegeFilter;
 import org.apache.commons.beanutils.BeanUtils;
@@ -52,6 +62,8 @@ public class EmployeeController {
 
 	@Resource
 	private UserService userService; 
+	
+	
 	
 	/** 分页查询 显示所有员工的列表*/
 	@RequestMapping("/hrm/getEmployeeByPage.action")
@@ -323,54 +335,102 @@ public class EmployeeController {
 		return emp;
 	}
 
+	//执行删除员工操作
 	@RequestMapping("/hrm/deleteEmp.action")
 	public String deleteEmp(Integer empId, HttpServletRequest request) {
-		setPrivilegeFilterUser(request);
-		int num = 0;
 		
-		try {
-			num = employeeService.deleteById(empId);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			num = -1;
-		}
-		
-		if (num == -1) {
+		//先判断有没有权限
+		//获取当前用户
+		User user = (User) request.getSession().getAttribute("user");  //数据在Session域中
+		//System.out.println("当前用户是："+user);
+		int userId = user.getUserId();
+		//System.out.println(ctx);
+		//获得bean
+		//TableTestDao tableTestDao=ctx.getBean("tableTestDao",TableTestDao.class);
+		RuMiddleService ruMiddleService = ctx.getBean("ruMiddleService",RuMiddleService.class); //获取数据库接口操作对象
+	
+		com.ssm.OaManager.mydao.RuMiddle middle = ruMiddleService.getByUserId(userId);
+		if(middle.getRole_id() == 2) {
 			request.setAttribute("result", "权限不足");
+			return "/hrm/getEmployeeByPage.action";
+		}else {
+			setPrivilegeFilterUser(request);
+			int num = 0;
+			try {
+				num = employeeService.deleteById(empId);		
+			} catch (Exception e) {
+				// TODO: handle exception
+				num = -1;
+			}	
+			if (num == -1) {
+				request.setAttribute("result", "服务器出错删除失败");
+			}else {
+				request.setAttribute("result", "删除成功");
+			}
+			return "/hrm/getEmployeeByPage.action";
 		}
-		return "/hrm/getEmployeeByPage.action";
 	}
 
-	//查找而已
+	//查找而已(点击编辑回显数据)
+	//判断权限
+	ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");  
 	@RequestMapping("/hrm/findEmpById.action")
 	public String findEmp(Integer empId, HttpServletRequest request) {
-		setPrivilegeFilterUser(request);
-		Employee emp = employeeService.findById(empId);
 		
-		List<Department> depts = deptService.findAll();
-		List<Position> positions = positionService .findAll();
+		//先判断有没有权限
+		//获取当前用户
+		User user = (User) request.getSession().getAttribute("user");  //数据在Session域中
+		//System.out.println("当前用户是："+user);
+		int userId = user.getUserId();
+		//System.out.println(ctx);
+		//获得bean
+		//TableTestDao tableTestDao=ctx.getBean("tableTestDao",TableTestDao.class);
+		RuMiddleService ruMiddleService = ctx.getBean("ruMiddleService",RuMiddleService.class); //获取数据库接口操作对象
+	
+		com.ssm.OaManager.mydao.RuMiddle middle = ruMiddleService.getByUserId(userId);
 		
-		request.setAttribute("emp", emp);
-		request.setAttribute("depts", depts);
-		request.setAttribute("positions", positions);
+		System.out.println("查询数据库:"+middle);
 		
-		return "/pages_hr/public_hr_employee_edit.jsp";
+		if(middle.getRole_id() == 2) {
+			request.setAttribute("result", "权限不足");
+			return "/hrm/getEmployeeByPage.action";
+		}else {
+			setPrivilegeFilterUser(request);
+			Employee emp = employeeService.findById(empId); //回显示数据
+			
+			List<Department> depts = deptService.findAll();
+			List<Position> positions = positionService .findAll();
+			
+			request.setAttribute("emp", emp);
+			request.setAttribute("depts", depts);
+			request.setAttribute("positions", positions);
+			
+			return "/pages_hr/public_hr_employee_edit.jsp";
+		}
+		
+		
+		
 	}
 
-	//修改部门
+
+	/*
+	 *	//执行修改员工数据 
+	 */
 	@RequestMapping("/hrm/updateEmployee.action")
 	public String updateEmp(HttpServletRequest request) throws Exception {
 		setPrivilegeFilterUser(request);
 		Employee emp = editEmp(request);
-		int num = 0;
+
+		int num = employeeService.updateEmp(emp);
 		
-		try {
-			num = employeeService.updateEmp(emp);
-		} catch (Exception e) {
-			// TODO: handle exception
-			num = -1;
-		}
+//		int num = 0;
+//		
+//		try {
+//			num = employeeService.updateEmp(emp);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			num = -1;
+//		}
 		
 		if (num == -1) {
 			request.setAttribute("result", "权限不足");
@@ -384,5 +444,24 @@ public class EmployeeController {
 		this.privilegeFilter.setUser(user);
 	}
 	
+	
+	@Test
+	public void test02() {
+		
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");  
+		System.out.println(ctx);
+		//获得bean
+		//TableTestDao tableTestDao=ctx.getBean("tableTestDao",TableTestDao.class);
+		RuMiddleService ruMiddleService = ctx.getBean("ruMiddleService",RuMiddleService.class);
+		System.out.println("这里不行哈哈");  
+		//访问数据库
+		List<com.ssm.OaManager.mydao.RuMiddle> lists = ruMiddleService.findAll(); 
+		for (com.ssm.OaManager.mydao.RuMiddle ruMiddle : lists) {	
+			System.out.println(ruMiddle);
+		}    
+		
+		
+		
+	}
 
 }

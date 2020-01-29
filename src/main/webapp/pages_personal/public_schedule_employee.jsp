@@ -130,14 +130,15 @@
 														style="margin-bottom: 0px !important;">
 														
 														
-														<a class="btn mini green" href="#" data-toggle="dropdown">
+														<a class="btn mini green" href="${pageContext.request.contextPath}/sys_schedule/look_emp_Schedule.action" data-toggle="modal">
 															<i class="icon-user"></i>查看日程
 														</a>
 														
-														
-													
-														
-														
+														<!--  
+														<a data-toggle="modal"
+																href="${pageContext.request.contextPath}/hrm/findEmpById.action?empId=${emp.empId}">
+																	<i class="icon-edit"></i>编辑</a>
+														-->
 														
 													</div> <!-- end操作按钮 --></td>
 											</tr>

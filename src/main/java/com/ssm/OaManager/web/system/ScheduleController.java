@@ -234,33 +234,22 @@ public class ScheduleController extends BaseController {
 	 */
 	@RequestMapping("/sys_schedule/emp_Schedule.action")
 	public String emp_Schedule(HttpServletRequest request) {
-		
-		//System.out.println("来了老弟哈哈哈哈。。。。。。。。。。。");
-		
-			//System.out.println(".................来了老弟.............");
 			setPrivilegeFilterUser(request);
 			PageBean<Employee> pageBean = new PageBean<Employee>();
 			
 			List<Employee> emps = employeeService.findByPage(pageBean); //获取员工集合
 			List<Employee> emps2 = new ArrayList<Employee>(); //返回到前端的集合
-		
-			
-//			User user = new User();
-//			Employee employee = new Employee();
 			//遍历匹配用户id
 			for(int i = 0;i < emps.size(); i++) { //遇到问题，for循环无法遍历完集合内的数据
-				
-				//System.out.println("我是谁："+emps.get(i).getEmpName()+" ");
 				
 				Integer userId = emps.get(i).getEmp_user_id(); //获取关联的用户id
 				User user = userService.findById(userId);
 				Employee emp = emps.get(i); 
 				//System.out.println("获取id试试看:"+userId);
 				if(userId == null) {
-					System.out.println(emps.get(i).getEmpName());
-					
-					//emps.remove(i); //把当前的移除不显示
-					
+					//System.out.println(emps.get(i).getEmpName());
+					continue;
+					//emps.remove(i); //把当前的移除不显示(这句代码有毒，千万不要用)
 				}else {
 					//打印试试看
 					//System.out.println(emps.get(i).getEmpName());
@@ -268,52 +257,22 @@ public class ScheduleController extends BaseController {
 					emps2.add(emp); //加入集合
 					
 				}
-				
-				//user.setUserId(userId); //设置用户id
-//				User user2 = userService.findById(userId); //根据id查找用户
-//				System.out.println(user2);
-				
-				
-				
-				/*if(emps.get(i).getEmp_user_id() == null) { //如果该员工没有注册
-					System.out.println("这是空的员工名称是："+emps.get(i).getEmpName()+"  "+"用户名称是："+emps.get(i).getUser().getUserName());
-					emps.remove(i);	
-				}else {
-					emps.get(i).setUser(userService.findById(emps.get(i).getEmp_user_id())); //设置用户
-					
-					System.out.println("员工名称是："+emps.get(i).getEmpName()+"  "+"用户名称是："+emps.get(i).getUser().getUserName());
-					
-				}*/
-
-				//System.out.println(employee.getEmp_user_id()+"     "+"这是用户id");
-				
-//				user = userService.findById(employee.getEmp_user_id());
-//				System.out.println("哈哈哈哈哈"+user);
-//				employee.setUser( userService.findById(employee.getEmp_user_id()) );
-//				System.out.println("卧槽我不信"+employee.getEmpName()+employee.getUser());
-//				String username = employee.getUser().getUserName();
-//				
-//			//	System.out.println("这是用户名"+);
-//				if(username == null ||username.equals("")) {
-//					//System.out.println("这是空的删除了   "+username);
-//					emps.remove(i); //不显示
-//				}
-				
-			
-			
 			}
-			
-			
-			
-			
-//			for (Employee employee : emps) {
-//				.
-//				user = userService.findById(employee.getEmp_user_id());
-//				employee.setUser(user);
-//			}
 		request.setAttribute("emps", emps2);
 		return "/pages_personal/public_schedule_employee.jsp";
 		
 	}
+	
+	/*
+	 * 点击查看日程弹出该员工的日程表
+	 */
+	@RequestMapping("/sys_schedule/look_emp_Schedule.action")
+	public String ViewEmployeeRiCheng(HttpServletRequest request) {
+		System.out.println("看啥子呢。。。。。。。。。。。。。。。");
+		
+		
+		return "/pages_personal/public_empSchedule.jsp";
+	}
+	
 
 }

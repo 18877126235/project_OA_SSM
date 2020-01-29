@@ -85,6 +85,7 @@ E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\f
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\hrm\Salary.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\system\impl\ScheduleDaoImpl.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\system\impl\AnnouncementDaoImpl.java
+E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\mydao\RuMiddleDao.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\hrm\Leave.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\system\impl\workflow\FlowLinkServiceImpl.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\system\impl\RoleServiceImpl.java
@@ -199,13 +200,16 @@ E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\web\stat
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\fixedAsset\impl\FortifyTypeDaoImpl.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\system\accessory\AflTypeDao.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\User.java
+E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\test\TableTest.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\system\FunctionDao.java
+E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\mydao\RuMiddleService.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\system\accessory\AflTypeService.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\filter\LoginFilter.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\fixedAsset\MaintainTypeService.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\stationery\ScrapDao.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\stationery\ReceiveDao.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\system\workflow\FlowTemplateDao.java
+E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\test\TableTestDao.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\hrm\impl\EvectionDaoImpl.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\official\Approve.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\stationery\BorrowService.java
@@ -224,6 +228,7 @@ E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\web\syst
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\hrm\Position.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\stationery\Borrow.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\fixedAsset\impl\AssetServiceImpl.java
+E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\test\TableTestService.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\workflow\FlowType.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\fixedAsset\FortifyType.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\entity\workflow\StepTemplate.java
@@ -249,6 +254,7 @@ E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\fixe
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\web\stationery\StationeryStatusController.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\system\FunctionService.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\system\accessory\ProjectAskDao.java
+E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\mydao\RuMiddle.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\dao\stationery\StationeryDao.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\system\impl\accessory\AskForLeaveServiceImpl.java
 E:\WEB-workPath\9997Maven_OaProjectTest\src\main\java\com\ssm\OaManager\service\stationery\ScrapService.java
